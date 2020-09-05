@@ -28,7 +28,6 @@
       function (err, instance) {
         button.addEventListener("click", function () {
           instance.requestPaymentMethod(async function (err, payload) {
-            // Submit payload.nonce to your server
             const nonce = payload.nonce;
             if (nonce) {
               const url = "https://ywaldo.azurewebsites.net/initialPayment?code=0YSzFrNGyPr49nMG49s6poqGR25HNFmNVaBowlRKUSp0ZftItnaiww==%27"
