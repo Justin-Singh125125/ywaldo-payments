@@ -46,6 +46,7 @@
     let isCardSelected = false;
     var button = document.querySelector("#submit-button");
 
+
     braintree.dropin.create(
       {
         authorization: "sandbox_fwrwczp4_c67sf9xqwmk5xxhs",
@@ -57,21 +58,18 @@
             const nonce = payload.nonce;
             if (nonce && isCardSelected) {
 
-              const nonceObj = {
-                nonce: nonce
-              }
-              const url = "https://ywaldo.azurewebsites.net/initialPayment?code=0YSzFrNGyPr49nMG49s6poqGR25HNFmNVaBowlRKUSp0ZftItnaiww==%27"
-              const response = await fetch(url, {
-                method: 'POST',
+
+              $.ajax({
+                url: "https://ywaldo.azurewebsites.net/initialPayment?code=0YSzFrNGyPr49nMG49s6poqGR25HNFmNVaBowlRKUSp0ZftItnaiww==%27",
+                method: "GET",
                 headers: {
-                  'Content-Type': 'application/json',
-                  'Cookie': 'ARRAffinity=b5c00dccdec3665a65f7f0a8f6742909bc8c035379ae6cc0f65a59753d7196f4',
-                  'Access-Control-Allow-Origin': '*'
-                },
-                body: JSON.stringify(nonceObj)
-              });
-              const data = response.json();
-              console.log(data);
+                  "Content-Type": "application/json",
+                  "Cookie": "b5c00dccdec3665a65f7f0a8f6742909bc8c035379ae6cc0f65a59753d7196f4"
+                }
+              }).then((response) => {
+                console.log(response);
+              })
+
             }
             else if (nonce) {
               isCardSelected = true;
