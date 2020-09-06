@@ -61,7 +61,8 @@
               console.log(nonce);
               $.ajax({
                 url: "https://ywaldo.azurewebsites.net/initialPayment?code=0YSzFrNGyPr49nMG49s6poqGR25HNFmNVaBowlRKUSp0ZftItnaiww==",
-                method: "POST"
+                method: "POST",
+                data: { nonce }
               }).then((response) => {
                 console.log(response);
               })
