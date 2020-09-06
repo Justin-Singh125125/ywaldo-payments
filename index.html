@@ -16,6 +16,7 @@
   <!-- <script type="text/javascript" src="main.bundle.js"></script> -->
 
   <script>
+    let isCardSelected = false;
     var button = document.querySelector("#submit-button");
 
     braintree.dropin.create(
@@ -32,7 +33,7 @@
         button.addEventListener("click", function () {
           instance.requestPaymentMethod(async function (err, payload) {
             const nonce = payload.nonce;
-            if (nonce) {
+            if (nonce && isCardSelected) {
               const url = "https://ywaldo.azurewebsites.net/initialPayment?code=0YSzFrNGyPr49nMG49s6poqGR25HNFmNVaBowlRKUSp0ZftItnaiww==%27"
               const response = await fetch(url, {
                 method: 'POST',
@@ -45,6 +46,10 @@
               });
               const data = response.json();
               console.log(data);
+            }
+            else if (nonce) {
+              isCardSelected = true;
+              button.innerText = "Purchase ($100)"
             }
           });
         });
