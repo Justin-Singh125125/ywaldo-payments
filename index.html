@@ -24,7 +24,10 @@
       {
         authorization: "sandbox_fwrwczp4_c67sf9xqwmk5xxhs",
         selector: "#dropin-container",
-        preselectVaultedPaymentMethod: false
+        preselectVaultedPaymentMethod: false,
+        vaultCard: false,
+        allowVaultCardOverride: false
+
       },
       function (err, instance) {
         button.addEventListener("click", function () {
