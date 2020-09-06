@@ -58,12 +58,6 @@
             const nonce = payload.nonce;
             if (nonce && isCardSelected) {
 
-              const nonceObj = {
-                nonce: nonce
-              };
-
-              console.log(nonceObj);
-
               var settings = {
                 "url": "https://ywaldo.azurewebsites.net/initialPayment?code=0YSzFrNGyPr49nMG49s6poqGR25HNFmNVaBowlRKUSp0ZftItnaiww==",
                 "method": "POST",
@@ -74,7 +68,9 @@
                 "data": JSON.stringify({ "nonce": nonce }),
               };
               $.ajax(settings).then((response) => {
-                console.log(response);
+                const { braintree_guid } = response;
+
+                handleCloseWebview(braintree_guid);
               })
 
             }
@@ -87,12 +83,11 @@
       }
     );
 
-    function test() {
-      console.log("test");
+    function handleCloseWebview(token) {
       history.pushState(
         null,
         null,
-        "https://justin-singh125125.github.io/ywaldo-payments/thankyou.html/?token=asdjcvkjencnc"
+        `https://justin-singh125125.github.io/ywaldo-payments/thankyou.html/?token=${token}`
       );
     }
   </script>
