@@ -57,7 +57,9 @@
             const nonce = payload.nonce;
             if (nonce && isCardSelected) {
 
-              console.log({ nonce })
+              const nonceObj = {
+                nonce: nonce
+              }
               const url = "https://ywaldo.azurewebsites.net/initialPayment?code=0YSzFrNGyPr49nMG49s6poqGR25HNFmNVaBowlRKUSp0ZftItnaiww==%27"
               const response = await fetch(url, {
                 method: 'POST',
@@ -66,7 +68,7 @@
                   'Cookie': 'ARRAffinity=b5c00dccdec3665a65f7f0a8f6742909bc8c035379ae6cc0f65a59753d7196f4',
                   'Access-Control-Allow-Origin': '*'
                 },
-                body: { nonce }
+                body: JSON.stringify(nonceObj)
               });
               const data = response.json();
               console.log(data);
