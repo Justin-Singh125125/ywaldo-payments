@@ -42,8 +42,6 @@
       <button id="submit-button" type="button" class="btn btn-success">Continue</button>
     </div>
   </div>
-  <!-- <script type="text/javascript" src="main.bundle.js"></script> -->
-
   <script>
     let isCardSelected = false;
     var button = document.querySelector("#submit-button");
@@ -52,11 +50,6 @@
       {
         authorization: "sandbox_fwrwczp4_c67sf9xqwmk5xxhs",
         selector: "#dropin-container",
-        preselectVaultedPaymentMethod: false,
-        vaultCard: false,
-        allowVaultCardOverride: false,
-        paymentMethodIsSelected: false
-
       },
       function (err, instance) {
         button.addEventListener("click", function () {
